@@ -12,8 +12,8 @@
 	$.ui.plugin.add('resizable', 'snap', {
 		start: function () {
 			var $this = $(this), inst = $this.data('ui-resizable'), snap = inst.options.snap;
-			inst.ow = inst.helper.outerWidth() - inst.size.width;
-			inst.oh = inst.helper.outerHeight() - inst.size.height;
+			inst.ow = 0;
+			inst.oh = 0;
 			inst.lm = getLm($this);
 			inst.tm = getTm($this);
 			inst.coords = [];
@@ -21,7 +21,7 @@
 			$(typeof snap == 'string' ? snap : ':data(ui-resizable)').each(function () {
 				if (this == inst.element[0] || this == inst.helper[0]) return;
 			
-				var $el = $(this), p = $el.position(), 
+				var $el = $(this), p = $el.offset(),
 					l = p.left + getLm($el), t = p.top + getTm($el);
 					
 				inst.coords.push({ 
